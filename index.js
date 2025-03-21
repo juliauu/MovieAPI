@@ -42,6 +42,19 @@ app.post("/movies", (req, res) => {
   res.json(movies);
 });
 
+app.put("/movies/:id", (req, res) => {
+  const idx = parseInt(req.params.id);
+  const movie = {
+    id: idx,
+    title: req.body.title,
+    genre: req.body.genre,
+    rating: parseFloat(req.body.rating),
+  };
+  const searchIdx = movies.findIndex((movie) => movie.id === idx);
+  movies[searchIdx] = movie;
+  res.json(movie);
+});
+
 let movies = [
   { id: 1, title: "Inception", genre: "Sci-Fi", rating: 8.8 },
   { id: 2, title: "The Dark Knight", genre: "Action", rating: 9.0 },
