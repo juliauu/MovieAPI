@@ -69,6 +69,17 @@ app.patch("/movies/:id", (req, res) => {
   res.json(movie);
 });
 
+app.delete("/movies/:id", (req, res) => {
+  const idx = parseInt(req.params.id);
+  const searchIdx = movies.findIndex((movie) => movie.id === idx);
+  if (searchIdx > -1) {
+    movies.splice(searchIdx, 1);
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(404);
+  }
+});
+
 let movies = [
   { id: 1, title: "Inception", genre: "Sci-Fi", rating: 8.8 },
   { id: 2, title: "The Dark Knight", genre: "Action", rating: 9.0 },
