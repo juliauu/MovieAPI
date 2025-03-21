@@ -31,6 +31,17 @@ app.get("/filter", (req, res) => {
   res.json(filteredMovies);
 });
 
+app.post("/movies", (req, res) => {
+  const movie = {
+    id: movies.length + 1,
+    title: req.body.title,
+    genre: req.body.genre,
+    rating: parseFloat(req.body.rating),
+  };
+  movies.push(movie);
+  res.json(movies);
+});
+
 let movies = [
   { id: 1, title: "Inception", genre: "Sci-Fi", rating: 8.8 },
   { id: 2, title: "The Dark Knight", genre: "Action", rating: 9.0 },
