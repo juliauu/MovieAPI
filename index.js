@@ -16,8 +16,8 @@ app.get("/random", (req, res) => {
 
 app.get("/movies/:id", (req, res) => {
   const idx = parseInt(req.params.id);
-  const movie = movies.find((movie) => idx === movie.id);
-  res.json(movie);
+  const searchMovie = movies.find((movie) => idx === movie.id);
+  res.json(searchMovie);
 });
 
 app.get("/filter", (req, res) => {
@@ -49,6 +49,20 @@ app.put("/movies/:id", (req, res) => {
     title: req.body.title,
     genre: req.body.genre,
     rating: parseFloat(req.body.rating),
+  };
+  const searchIdx = movies.findIndex((movie) => movie.id === idx);
+  movies[searchIdx] = movie;
+  res.json(movie);
+});
+
+app.patch("/movies/:id", (req, res) => {
+  const idx = parseInt(req.params.id);
+  const searchMovie = movies.find((movie) => movie.id === idx);
+  const movie = {
+    id: idx,
+    title: req.body.title || searchMovie.title,
+    genre: req.body.genre || searchMovie.genre,
+    rating: parseFloat(req.body.rating) || searchMovie.rating,
   };
   const searchIdx = movies.findIndex((movie) => movie.id === idx);
   movies[searchIdx] = movie;
