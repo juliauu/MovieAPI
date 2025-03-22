@@ -8,11 +8,6 @@ REST API for managing a movie collection, built with **Express.js**. Supports CR
 - Update movie details (PUT/PATCH /movies/:id)
 - Delete movies (DELETE /movies/:id)
 ## Installation:
--
-``
+```sh
    npm install
-``
--
-``
    node index.js
-``
